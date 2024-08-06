@@ -1,44 +1,44 @@
 list_of_cards = input().split(", ")
 number_of_commands = int(input())
 
-for i in range(number_of_commands):
-    current_command = input().split(", ")
-    command = current_command[0]
+for current_command in range(number_of_commands):
+    command = input().split(", ")
+    action = command[0]
 
-    if command == "Add":
-        card_name = current_command[1]
+    if action == "Add":
+        card_name = command[1]
         if card_name not in list_of_cards:
             list_of_cards.append(card_name)
             print("Card successfully added")
         else:
             print("Card is already in the deck")
 
-    elif command == "Remove":
-        card_name = current_command[1]
+    elif action == "Remove":
+        card_name = command[1]
         if card_name in list_of_cards:
             list_of_cards.remove(card_name)
             print("Card successfully removed")
         else:
             print("Card not found")
 
-    elif command == "Remove At":
-        index = current_command[1]
-        if int(index) in range(len(list_of_cards)):
-            del list_of_cards[int(index)]
+    elif action == "Remove At":
+        index = int(command[1])
+        if index in range(len(list_of_cards)):
+            del list_of_cards[index]
             print("Card successfully removed")
         else:
             print("Index out of range")
 
-    elif command == "Insert":
-        index = int(current_command[1])
-        card_name = current_command[2]
-        if index not in range(len(list_of_cards)):
-            print("Index out of range")
-        else:
+    elif action == "Insert":
+        index, card_name = int(command[1]), command[2]
+        if index in range(len(list_of_cards)):
             if card_name not in list_of_cards:
                 list_of_cards.insert(index, card_name)
                 print("Card successfully added")
             else:
                 print("Card is already added")
+        else:
+            print("Index out of range")
 
-print(*list_of_cards, sep=", ")
+print(", ".join(list_of_cards))
+
